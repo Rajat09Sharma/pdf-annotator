@@ -16,14 +16,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://tangerine-liger-04f4fc.netlify.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
 }));
 
 app.use(express.static('public'));
 app.use("/user", (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+    res.header("Access-Control-Allow-Origin", "https://pdf-anno.netlify.app");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type");
     next();
