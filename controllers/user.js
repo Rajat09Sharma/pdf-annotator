@@ -39,8 +39,25 @@ const getAllPdfs = async (req, res) => {
     }
 }
 
+const saveHighlights = async (req, res) => {
+    const { id } = req.params
+    try {
+        const pdf = await Pdf.findOneAndUpdate(
+            { _id: id },
+            { $set: { highlights: req.body.highlights } },
+            { new: true }
+        );
+        return res.status(201).json({ message: "Highlights save successfully." });
+    } catch (error) {
+        console.log("Highlights save error", error);
+        return res.status(500).json({ message: "Server error, Failed to save highlights." })
+
+    }
+}
+
 module.exports = {
     pdfUploadHandler,
     getPdfByIdHandler,
     getAllPdfs,
+    saveHighlights
 }
